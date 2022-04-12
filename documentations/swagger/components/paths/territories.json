@@ -1,0 +1,208 @@
+{
+    "/api/v2/territories": {
+        "post": {
+            "deprecated": false,
+            "security": [],
+            "responses": {
+                "200": {
+                    "description": "list of territories",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PostBody"
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [],
+            "tags": [
+                "Territory"
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/PostBody"
+                        },
+                        "examples": {
+                            "example1": {
+                                "summary": "POST - get territories (regex by code)",
+                                "description": "POST - get territories (regex by code)",
+                                "value": {
+                                    "PostBody": {
+                                        "filter": {
+                                            "code": {
+                                                "$regex": "lol",
+                                                "$options": "i"
+                                            }
+                                        },
+                                        "structure": "*",
+                                        "limit": 99
+                                    }
+                                }
+                            },
+                            "example2": {
+                                "summary": "POST - get territories (sort by name)",
+                                "description": "POST - get territories (sort by name)",
+                                "value": {
+                                    "PostBody": {
+                                        "filter": {},
+                                        "limit": 99,
+                                        "sort": {
+                                            "name": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "PostBody",
+                "required": false
+            }
+        }
+    },
+    "/api/v2/territory": {
+        "post": {
+            "deprecated": false,
+            "security": [],
+            "responses": {
+                "200": {
+                    "description": "Get a territory",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "",
+                                "properties": {
+                                    "datas": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/territoriesSchema"
+                                        }
+                                    },
+                                    "count": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [],
+            "tags": [
+                "Territory"
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/PostBody"
+                        }
+                    }
+                },
+                "description": "PostBody",
+                "required": false
+            }
+        },
+        "put": {
+            "deprecated": false,
+            "security": [
+                {
+                    "admin_authorization": []
+                },
+                {
+                    "user_authorization": []
+                }
+            ],
+            "responses": {},
+            "parameters": [],
+            "tags": [
+                "Territory"
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/TerritorySchema"
+                        }
+                    }
+                },
+                "description": "territory",
+                "required": false
+            }
+        }
+    },
+    "/api/v2/territory/{id}": {
+        "post": {
+            "deprecated": false,
+            "security": [],
+            "responses": {},
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Territory id",
+                    "required": true,
+                    "deprecated": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "tags": [
+                "Territory"
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/PostBody"
+                        }
+                    }
+                },
+                "description": "PostBody",
+                "required": false
+            }
+        },
+        "delete": {
+            "deprecated": false,
+            "security": [
+                {
+                    "admin_authorization": []
+                },
+                {
+                    "user_authorization": []
+                }
+            ],
+            "responses": {},
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "territory id",
+                    "required": true,
+                    "deprecated": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "tags": [
+                "Territory"
+            ]
+        }
+    },
+    "/api/territory/countries": {
+        "get": {
+            "deprecated": false,
+            "security": [],
+            "responses": {},
+            "parameters": [],
+            "tags": [
+                "Territory"
+            ]
+        }
+    }
+}
